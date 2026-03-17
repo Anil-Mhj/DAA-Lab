@@ -1,6 +1,6 @@
 // c program for 0-1 knapsack problem
 #include <stdio.h>
-
+#include <time.h>
 // Function to return maximum value that can be put in knapsack
 int max(int a, int b)
 {
@@ -42,6 +42,11 @@ int main()
         scanf("%d", &wt[i]);
     printf("Enter capacity of knapsack: ");
     scanf("%d", &W);
+    clock_t start, end;
+    start = clock();
     printf("Maximum value in Knapsack = %d\n", knapsack(W, wt, val, n));
+    end = clock();
+    double time_taken = (double)(end - start) / CLOCKS_PER_SEC;
+    printf("Execution time: %f seconds\n", time_taken);
     return 0;
 }

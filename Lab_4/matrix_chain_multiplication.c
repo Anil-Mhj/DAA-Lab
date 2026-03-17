@@ -1,7 +1,7 @@
 // c program to implement matrix chain multiplication
 #include <stdio.h>
 #include <limits.h>
-
+#include <time.h>
 int MatrixChainOrder(int p[], int n)
 {
     int m[n][n];
@@ -46,9 +46,13 @@ int main()
     {
         scanf("%d", &p[i]);
     }
-
+    clock_t start, end;
+    start = clock();
     printf("Minimum number of multiplications is %d\n",
            MatrixChainOrder(p, n + 1));
+    end = clock();
+    double time_taken = (double)(end - start) / CLOCKS_PER_SEC;
+    printf("Execution time: %f seconds\n", time_taken);
 
     return 0;
 }

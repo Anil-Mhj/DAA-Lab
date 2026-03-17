@@ -1,20 +1,18 @@
 // c program to implement prim algorithm
 #include <stdio.h>
 #include <limits.h>
-
+#include <time.h>
 #define MAX 100
 
 int minKey(int key[], int mstSet[], int V)
 {
     int min = INT_MAX, min_index;
-
     for (int v = 0; v < V; v++)
         if (mstSet[v] == 0 && key[v] < min)
         {
             min = key[v];
             min_index = v;
         }
-
     return min_index;
 }
 
@@ -32,18 +30,16 @@ void printMST(int parent[], int graph[MAX][MAX], int V)
 
 void primMST(int graph[MAX][MAX], int V)
 {
-    int parent[V]; // Stores MST
-    int key[V];    // Minimum weights
-    int mstSet[V]; // Included vertices
+    int parent[V];
+    int key[V];
+    int mstSet[V];
     for (int i = 0; i < V; i++)
     {
         key[i] = INT_MAX;
         mstSet[i] = 0;
     }
-
-    key[0] = 0;     // Start from vertex 0
-    parent[0] = -1; // Root of MST
-
+    key[0] = 0;
+    parent[0] = -1;
     for (int count = 0; count < V - 1; count++)
     {
         int u = minKey(key, mstSet, V);
@@ -58,7 +54,6 @@ void primMST(int graph[MAX][MAX], int V)
             }
         }
     }
-
     printMST(parent, graph, V);
 }
 
@@ -72,8 +67,11 @@ int main()
     for (int i = 0; i < V; i++)
         for (int j = 0; j < V; j++)
             scanf("%d", &graph[i][j]);
-
+    clock_t start, end;
+    start = clock();
     primMST(graph, V);
-
+    end = clock();
+    double time_taken = (double)(end - start) / CLOCKS_PER_SEC;
+    printf("Execution time: %f seconds\n", time_taken);
     return 0;
 }

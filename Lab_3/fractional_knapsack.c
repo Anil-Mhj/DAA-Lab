@@ -1,6 +1,6 @@
 // c program to implement fractional knapsack problem
 #include <stdio.h>
-
+#include <time.h>
 struct Item
 {
     int value;
@@ -52,6 +52,7 @@ float fractionalKnapsack(int capacity, struct Item arr[], int n)
 int main()
 {
     int n, capacity;
+    clock_t start, end;
     printf("Enter number of items: ");
     scanf("%d", &n);
     struct Item arr[n];
@@ -63,7 +64,11 @@ int main()
     }
     printf("Enter knapsack capacity: ");
     scanf("%d", &capacity);
+    start = clock();
     float maxValue = fractionalKnapsack(capacity, arr, n);
     printf("Maximum value = %.2f\n", maxValue);
+    end = clock();
+    double time_taken = (double)(end - start) / CLOCKS_PER_SEC;
+    printf("Execution time: %f seconds\n", time_taken);
     return 0;
 }

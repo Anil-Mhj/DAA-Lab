@@ -1,6 +1,7 @@
 // c program for djakstra's algorithm
 #include <stdio.h>
 #include <limits.h>
+#include <time.h>
 
 #define MAX 100
 
@@ -57,6 +58,7 @@ int main()
 {
     int V, src;
     int graph[MAX][MAX];
+    clock_t start, end;
 
     printf("Enter number of vertices: ");
     scanf("%d", &V);
@@ -69,7 +71,13 @@ int main()
     printf("Enter source vertex: ");
     scanf("%d", &src);
 
+    start = clock();
+
     dijkstra(graph, V, src);
+
+    end = clock();
+    double time_taken = (double)(end - start) / CLOCKS_PER_SEC;
+    printf("Execution time: %f seconds\n", time_taken);
 
     return 0;
 }

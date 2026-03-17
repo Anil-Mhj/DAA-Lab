@@ -1,6 +1,6 @@
 // c program to implement floyd warshall algorithm
 #include <stdio.h>
-
+#include <time.h>
 #define INF 999
 
 void floydWarshall(int graph[10][10], int n)
@@ -58,6 +58,11 @@ int main()
             scanf("%d", &graph[i][j]);
         }
     }
+    clock_t start, end;
+    start = clock();
     floydWarshall(graph, n);
+    end = clock();
+    double time_taken = (double)(end - start) / CLOCKS_PER_SEC;
+    printf("Execution time: %f seconds\n", time_taken);
     return 0;
 }

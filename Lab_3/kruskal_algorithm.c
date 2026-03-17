@@ -1,7 +1,7 @@
 // c program to implement kruskal's algorithm
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <time.h>
 struct Edge
 {
     int src, dest, weight;
@@ -88,6 +88,11 @@ int main()
     printf("Enter each edge (src dest weight):\n");
     for (int i = 0; i < E; i++)
         scanf("%d %d %d", &edges[i].src, &edges[i].dest, &edges[i].weight);
+    clock_t start, end;
+    start = clock();
     kruskal(edges, V, E);
+    end = clock();
+    double time_taken = (double)(end - start) / CLOCKS_PER_SEC;
+    printf("Execution time: %f seconds\n", time_taken);
     return 0;
 }
